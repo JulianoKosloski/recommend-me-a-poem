@@ -1,7 +1,3 @@
-Tiny web app that generates random poems on command and also stores user poems into the database
-
-
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
