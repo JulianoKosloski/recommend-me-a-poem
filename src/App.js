@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './hand.png';
 import './App.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Recommend me a poem!
         </p>
         <a
           className="App-link"
@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Three for the elven kings... One ring to rule them all, and in darkness bind them. 
         </a>
       </header>
     </div>
