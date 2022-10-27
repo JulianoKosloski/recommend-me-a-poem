@@ -8,8 +8,13 @@ app.listen(port)
 app.use('myMiddleware')
 
 app.get('/', (req, res) => {
-    res.sendStatus(500)
+    res.sendStatus(200)
     res.send('Starting the journey')
+})
+
+app.get('/posts', (req, res) => {
+    res.sendStatus(404)
+    res.send('No post yet!')
 })
 
 function myMiddleware(req, res, next) {
@@ -21,3 +26,9 @@ function myMiddleware(req, res, next) {
     })
     next()
 }
+
+const userRouter = require('./routes/users')
+const poemRouter = require('./routes/poems')
+
+app.use('/users', userRouter)
+app.use('/poems', poemRouter)
