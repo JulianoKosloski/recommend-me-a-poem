@@ -1,34 +1,45 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
-port = 3000 //TODO or system port defined in .env
+const cors = require('cors');
 
-app.listen(port)
+require('dotenv').config({path: './config.env'});
+port = process.env.port || 3000; //3000 or system port defined in .env
 
-app.use('myMiddleware')
+const dbo = require("./db/conn");
+
+app.listen(port, () => {
+    dbo.connectToServer(function (err) {
+        if (err) console.error(err);
+    });
+    console.log('Server is running on port ${port}');
+});
+
+app.use('myMiddleware');
+app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.sendStatus(200)
-    res.send('Starting the journey')
-})
+    res.sendStatus(200);
+    res.send('Starting the journey');
+});
 
 app.get('/posts', (req, res) => {
-    res.sendStatus(404)
-    res.send('No post yet!')
-})
+    res.sendStatus(404);
+    res.send('No post yet!');
+});
 
 function myMiddleware(req, res, next) {
-    console.log('Hello from the middle')
+    console.log('Hello from the middle');
     res.json({
         message: "This is a JSON",
         id: 35,
         origin: "Mars"
-    })
-    next()
-}
+    });
+    next();
+};
 
-const userRouter = require('./routes/users')
-const poemRouter = require('./routes/poems')
+const userRouter = require('./routes/users');
+const poemRouter = require('./routes/poems');
 
-app.use('/users', userRouter)
-app.use('/poems', poemRouter)
+app.use('/users', userRouter);
+app.use('/poems', poemRouter);
